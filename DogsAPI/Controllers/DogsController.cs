@@ -12,7 +12,7 @@ public class DogBreedsController : ControllerBase
         _service = service;
     }
 
-    // Pobierz wszystkie rasy psów
+    
     [HttpGet]
     public IActionResult GetAll()
     {
@@ -20,7 +20,7 @@ public class DogBreedsController : ControllerBase
         return Ok(breeds);
     }
 
-    // Pobierz rasê psa na podstawie ID
+
     [HttpGet("{id}")]
     public IActionResult GetById(int id)
     {
@@ -31,15 +31,14 @@ public class DogBreedsController : ControllerBase
         return Ok(breed);
     }
 
-    // Dodaj now¹ rasê psa
+    
     [HttpPost]
     public IActionResult Create([FromBody] CreateDogBreedDto breedDto)
     {
-        var createdBreed = _service.Add(breedDto);  // Zaktualizowana linia
+        var createdBreed = _service.Add(breedDto);
         return CreatedAtAction(nameof(GetById), new { id = createdBreed.Id }, createdBreed);
     }
 
-    // Aktualizuj istniej¹c¹ rasê psa
     [HttpPut("{id}")]
     public IActionResult Update(int id, [FromBody] CreateDogBreedDto breedDto)
     {
@@ -47,7 +46,7 @@ public class DogBreedsController : ControllerBase
         return NoContent();
     }
 
-    // Usuñ rasê psa
+    
     [HttpDelete("{id}")]
     public IActionResult Delete(int id)
     {
